@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+<script>
+    let outcomes = ["Rock", "Paper", "Scissors"];
+
+         function computerPlay() {
+             return Math.floor(Math.random() * 3);
+         }
+
+         function playGame(playerSelection, computerSelection) {
+            if(playerSelection === 'rock' && computerSelection === 'Scissors'){
+                console.log('You win! Rock beats Scissors');
+            } else if(playerSelection === 'paper' && computerSelection === 'Rock'){
+                console.log('You win! Paper covers rock');
+            } else if(playerSelection === 'scissors' && computerSelection === 'Paper'){
+                console.log('You win! Scissors cuts paper');
+            } else{
+                console.log('You lose!')
+            }
+        }
+        
+          function game() {
+              for(let i = 1; i <= 5; i++) {
+                const playerSelection = (prompt('Pick your selection this round of play')).toLowerCase();
+                let computerSelection = outcomes[computerPlay()];
+                playGame(playerSelection, computerSelection);
+              }
+          }
+          game();
+</script>
+</body>
+</html>
