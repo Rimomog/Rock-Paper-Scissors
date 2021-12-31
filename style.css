@@ -1,0 +1,33 @@
+body, html{
+    height: 100%;
+}
+#container{
+    height: 100%;
+    background-image:url(./images/akeyodia.jpg) ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+button{
+    border-radius: 50px;
+    box-shadow: 5px 5px 10px 3px #f4f4f4;
+    padding: 8px 16px;
+    color: white;
+    background-color: blue;
+    margin: 10px;
+}
+
+#btn, #input{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#result, #player, #computer, #win{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(199, 157, 21);
+    font-size: 24px;
+}

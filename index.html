@@ -5,37 +5,93 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <div id="container">
+        <div id="btn">
+            <button id="rock" value="rock">Rock</button>
+            <button id="paper" value="paper">Paper</button>
+            <button id="scissors" value="scissors">Scissors</button>
+        </div>
+    <br>
+    <div id="result"></div>
+    <br>
+    <div id="player">Player 1: 0</div>
+    <br>
+    <div id="computer">Player 2: 0</div>
+    <br>
+    <p id="win"></p>
+    </div>
 
 <script>
-    let outcomes = ["Rock", "Paper", "Scissors"];
+    let playerSum = 0;
+    let computerSum = 0;
+    const win = document.getElementById('win');
+    const player = document.getElementById('player');
+    const computer = document.getElementById('computer');
+    const result = document.getElementById('result');
+    const button = document.querySelectorAll('button');
+    const outcomes = ['rock', 'scissors', 'paper'];
 
          function computerPlay() {
              return Math.floor(Math.random() * 3);
          }
 
          function playGame(playerSelection, computerSelection) {
-            if(playerSelection === 'rock' && computerSelection === 'Scissors'){
-                console.log('You win! Rock beats Scissors');
-            } else if(playerSelection === 'paper' && computerSelection === 'Rock'){
-                console.log('You win! Paper covers rock');
-            } else if(playerSelection === 'scissors' && computerSelection === 'Paper'){
-                console.log('You win! Scissors cuts paper');
+            if(playerSelection === 'rock' && computerSelection === 'scissors'){
+                // console.log('You win! Rock beats Scissors');
+                result.textContent = 'You win! Rock beats Scissors';
+                player.textContent = `Player: ${playerSum += 1}`;
+            } else if(playerSelection === 'paper' && computerSelection === 'rock'){
+                // console.log('You win! Paper covers rock');
+                result.textContent = 'You win! Paper covers Rock';
+                player.textContent = `Player: ${playerSum += 1}`;
+            } else if(playerSelection === 'scissors' && computerSelection === 'paper'){
+                // console.log('You win! Scissors cuts paper');
+                result.textContent = 'You win! Scissors cuts Paper';
+                player.textContent = `Player: ${playerSum += 1}`;
+            } else if(computerSelection === 'scissors' && playerSelection === 'paper'){
+                // console.log('You lose!')
+                result.textContent = 'You lose! Scissors cuts Paper'
+                computer.textContent = `Computer: ${computerSum += 1}`;
+            } else if(computerSelection === 'paper' && playerSelection === 'rock'){
+                result.textContent = 'You lose! Paper covers Rock'
+                computer.textContent = `Computer: ${computerSum += 1}`;
+            } else if(computerSelection === 'rock' && playerSelection === 'scissors'){
+                result.textContent = 'You lose! Rock beats Scissors';
+                computer.textContent = `Computer: ${computerSum += 1}`;
             } else{
-                console.log('You lose!')
+                result.textContent = "It's a tie! replay the round";
             }
+            
+            determineWinner(playerSum, computerSum);
         }
-        
-          function game() {
-              for(let i = 1; i <= 5; i++) {
-                const playerSelection = (prompt('Pick your selection this round of play')).toLowerCase();
-                let computerSelection = outcomes[computerPlay()];
+
+          button.forEach(button => {
+            button.addEventListener('click', testInput);
+          });
+          
+    function testInput(e) {
+        if(e.target.id === 'rock') {
+            playerSelection = 'rock';
+        }else if(e.target.id === 'paper'){
+            playerSelection = 'paper';
+        } else if(e.target.id === 'scissors'){
+            playerSelection = 'scissors';
+        }
+
+        let computerSelection = outcomes[computerPlay()];
                 playGame(playerSelection, computerSelection);
-              }
-          }
-          game();
+    }
+
+     function determineWinner(x, y) {
+         if(x === 5){
+            win.textContent = 'Game Over! Player 1 is the winner';
+        }else if(y === 5){
+            win.textContent = 'Game Over! Player 2 is the winner';
+        }
+     }
 </script>
 </body>
 </html>
